@@ -1,3 +1,7 @@
+ver.1.1.0
+- changed the base design to be more uniform to what streamers would want
+- optimised some function code in main.js
+
 ver.1.0.1
 - all remaining instances of HyperOverlay were changed to CoreOverlay
 

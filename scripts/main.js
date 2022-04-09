@@ -8,7 +8,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
   `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
                                                                                           ,V      
                                                                                        OOb"         
-	CoreOverlay ver.1.0.1
+	CoreOverlay ver.1.1.0
 	made without blood or sweat, but a lot of tears by doc norberg
 
 	main.js - the core code that powers all other components
@@ -34,8 +34,6 @@ var updating = false;
 var overlaystatus = false;
 $('#overlaystatus').set('checked', false);
 
-var faded = false;
-var faded2 = false;
 var inverted = false;
 $('#inverted').set('checked', false);
 
@@ -108,7 +106,12 @@ var CoreOverlay = {
 				r2l = $('#ir2l').get("value");
 				gg = $('#imm').get("value");
 				mm = $('#igg').get("value");
-				runUpdate();
+				runUpdate('#p1n', '<small>' + cr1 + '</small>' + p1);
+				runUpdate('#p2n', '<small>' + cr2 + '</small>' + p2);
+				runUpdate('#s1', s1);
+				runUpdate('#s2', s2);
+				runUpdate('#gg', gg);
+				runUpdate('#tt', mm);
 				break;
 		
 			case 'left':
@@ -150,15 +153,17 @@ var CoreOverlay = {
 		// the overlaystatus variable will be in sync with the #overlaystatus checkbox so this works
 		if ( overlaystatus ) {
 			updating = true;
-			$('.p1la').set('$opacity', 0);
-			$('.p2la').set('$opacity', 0);
-			$('.p1nb').set('$width', '0px');
-			$('.p2nb').set('$width', '0px');
-			$('.bc').set('$width', '0px');
+			$('.p1nb').set('$width', '540px');
+			$('.p2nb').set('$width', '540px');
+			$('.p1nb').set('$opacity', 0);
+			$('.p2nb').set('$opacity', 0);
+			$('.bc').set('$width', '700px');
+			$('.bc').set('$opacity', 0);
 			$('.p1c').set('$opacity', 0);
 			$('.p2c').set('$opacity', 0);
 			$('#gg').set('$opacity', 0);
 			$('#tt').set('$opacity', 0);
+			$('.scorenum').set('$opacity', 0);
 			$.wait(1500).then(function() {
 				clearolcon();
 				updating = false;
@@ -169,15 +174,14 @@ var CoreOverlay = {
 			$('.p1c').set('$opacity', 1);
 			$('.p2c').set('$opacity', 1);
 			$.wait(100).then(function() {
-				$('.bc').set('$width', '1000px');
+				$('.bc').set('$width', '750px');
+				$('.bc').set('$opacity', 1);
 				$.wait(300).then(function() {
-					$('.p1nb').set('$width', '740px');
-					$('.p2nb').set('$width', '740px');
+					$('.p1nb').set('$width', '590px');
+					$('.p2nb').set('$width', '590px');
+					$('.p1nb').set('$opacity', 1);
+					$('.p2nb').set('$opacity', 1);
 					CoreOverlay.send('send');
-				});
-				$.wait(1500).then(function() {
-					$('.p1la').set('$opacity', 0.5);
-					$('.p2la').set('$opacity', 0.5);
 				});
 			});
 			overlaystatus = true;
@@ -248,12 +252,12 @@ var CoreOverlay = {
 		//}
 		inverted = $('#inverted').get('checked');
 		if (!inverted) {
-			$('.pname').set('$color','#fff');
+			//$('.pname').set('$color','#fff');
 			$('.bc').set('$background-color','#000');
 			$('.gtext').set('$color','#fff');
 			$('.scorenum').set('$color','#fff');
 		} else {
-			$('.pname').set('$color','#000');
+			//$('.pname').set('$color','#000');
 			$('.bc').set('$background-color','#fff');
 			$('.gtext').set('$color','#000');
 			$('.scorenum').set('$color','#000');
@@ -261,67 +265,27 @@ var CoreOverlay = {
 	}
 };
 
-function runUpdate() {
+function runUpdate(did, vid) {
 	// runUpdate: function that actually updates the items on the overlay display.
+	// did: string. the #id of the displayed element.
+	// vid: string. the variable or arbitrary string associated with the displayed element.
+	//   the content of vid should be identical to the content of did if nothing was changed.
+	// example call: runUpdate('#s1', s1);
 
-	if ($('#p1n').get("innerHTML") != '<small>' + cr1 + '</small>' + p1) {
+	// the simplification of this function assumes that all display elements update using
+	//   the same animation, though this could be simply extended to include multiple animations.
+
+	// in this core build, the player name elements are a combination of cr1 and p1 variables,
+	//   the function is called as such: runUpdate('#p1n', '<small>' + cr1 + '</small>' + p1);
+
+	if ($(did).get("innerHTML") != vid) {
 		updating = true;
-		$('#p1n').set('$opacity', 0);
+		$(did).set('$opacity', 0);
 		$.wait(inSpeed).then(function() {
-				$('#p1n').set("innerHTML", '<small>' + cr1 + '</small>' + p1);
-				$('#p1n').set('$opacity', 1);
+				$(did).set("innerHTML", vid);
+				$(did).set('$opacity', 1);
 				$.wait(inSpeed).then(function() { updating = false; });
 		});
-	}
-
-	if ($('#p2n').get("innerHTML") != '<small>' + cr2 + '</small>' + p2) {
-		updating = true;
-		$('#p2n').set('$opacity', 0);
-		$.wait(inSpeed).then(function() {
-				$('#p2n').set("innerHTML", '<small>' + cr2 + '</small>' + p2);
-				$('#p2n').set('$opacity', 1);
-				$.wait(inSpeed).then(function() { updating = false; });
-			});
-	}
-
-	if ($('#s1').get("innerHTML") != s1) {
-		updating = true;
-		$('.p1s').animate({$$fade: 0}, outSpeed).then(function() {
-			$('#s1').set("innerHTML", s1);
-			$('.p1s').animate({$$fade: 1}, inSpeed);
-			updating = false;
-		});
-	}
-
-	if ($('#s2').get("innerHTML") != s2) {
-        $('.dummy').animate({$$fade: 0}, 1).then(function() {
-			updating = true;
-			$('.p2s').animate({$$fade: 0}, outSpeed).then(function() {
-				$('#s2').set("innerHTML", s2);
-				$('.p2s').animate({$$fade: 1}, inSpeed);
-				updating = false;
-			});
-		});
-	}
-
-	if ($('#gg').get("innerHTML") != gg) {
-		updating = true;
-		$('#gg').set('$opacity', 0);
-		$.wait(inSpeed).then(function() {
-				$('#gg').set("innerHTML", gg);
-				$('#gg').set('$opacity', 1);
-				$.wait(inSpeed).then(function() { updating = false; });
-	    });
-	}
-
-	if ($('#tt').get("innerHTML") != mm) {
-		updating = true;
-		$('#tt').set('$opacity', 0);
-		$.wait(inSpeed).then(function() {
-				$('#tt').set("innerHTML", mm);
-				$('#tt').set('$opacity', 1);
-				$.wait(inSpeed).then(function() { updating = false; });
-	    });
 	}
 }
 

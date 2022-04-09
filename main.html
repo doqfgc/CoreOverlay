@@ -8,7 +8,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
   `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
                                                                                           ,V      
                                                                                        OOb"         
-	CoreOverlay ver.1.0.1
+	CoreOverlay ver.1.1.0
 	made without blood or sweat, but a lot of tears by doc norberg
 
 	main.html - the foundation document in which all other components control or be controlled by
@@ -39,30 +39,21 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
 			<!--<div class="littlebar"></div>-->
 
 			<div class="p1c">
-				<div class="p1la">P1</div>
 				<div class="p1nb"></div>
-				<div class="recbox nrpa p1rc p1-col" id="p1rc">
-					<div class="recnum" id="p1r"></div>
-				</div>
-
 				<div class="namebox nrpa p1nc p1-col" id="p1nc">
 					<div class="pname" id="p1n"></div>
 				</div>
-
-				<div class="scorenum p1s" id="s1"></div>
 			</div>
 
 			<div class="p2c">
-				<div class="p2la">P2</div>
 				<div class="p2nb"></div>
-				<div class="recbox nrpa p2rc p2-col" id="p2rc">
-					<div class="recnum" id="p2r"></div>
-				</div>
-
 				<div class="namebox nrpa p2nc p2-col" id="p2nc">
 					<div class="pname" id="p2n"></div>
 				</div>
-				
+			</div>
+
+			<div class="mc">
+				<div class="scorenum p1s" id="s1"></div>
 				<div class="scorenum p2s" id="s2"></div>
 			</div>
 
@@ -98,13 +89,13 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
 				</div>
 				<div class="rightside">
 					<div class="bigplayer">
-						<input class="inputglobal inputcrew" id="icr2">
-						<input class="inputglobal inputplayer" id="ip2">
-						<input class="inputglobal inputbigscore" id="is2">
 						<div class="updown">
 							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('right', 'up');">&#9650;</button><br />
 							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('right', 'down');">&#9660;</button>
-						</div><br />
+						</div>
+						<input class="inputglobal inputbigscore" id="is2">
+						<input class="inputglobal inputcrew" id="icr2">
+						<input class="inputglobal inputplayer" id="ip2"><br />
 						<!--<input class="inputglobal inputrecord" id="ir2w"> - <input class="inputglobal inputrecord" id="ir2l">-->
 					</div>
 				</div>
@@ -112,30 +103,8 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
 			<div class="bottomside">
 				Enabled <input type="checkbox" class="check" id="overlaystatus" onclick="CoreOverlay.toggleOverlay();">
 				Invert <input type="checkbox" class="check" id="inverted" onclick="CoreOverlay.invertColors();">
-				<input class="inputglobal inputgame" id="igg" list="setlist">
-				<datalist id="setlist">
-					<option value="Winners Bracket"></option>
-					<option value="Losers Bracket"></option>
-					<option value="Winners Quarterfinals"></option>
-					<option value="Winners Semifinals"></option>
-					<option value="Winners Finals"></option>
-					<option value="Losers Top 16"></option>
-					<option value="Losers Top 12"></option>
-					<option value="Losers Top 8"></option>
-					<option value="Losers Quarterfinals"></option>
-					<option value="Losers Semifinals"></option>
-					<option value="Losers Finals"></option>
-					<option value="Grand Finals"></option>
-				</datalist>
-				<input class="inputglobal inputset" id="imm" list="bolist">
-				<datalist id="bolist">
-					<option value="Best of 3"></option>
-					<option value="Best of 5"></option>
-					<option value="Best of 7"></option>
-					<option value="First to 3"></option>
-					<option value="First to 4"></option>
-					<option value="First to 5"></option>
-				</datalist>
+				<input class="inputglobal inputset" id="imm">
+				<input class="inputglobal inputgame" id="igg">
 				<p id="hol-status">OK</p>
 			</div>
 		</div>
