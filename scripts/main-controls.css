@@ -1,0 +1,104 @@
+/*                                                                          ,,                    
+  .g8"""bgd                           .g8""8q.                            `7MM                    
+.dP'     `M                         .dP'    `YM.                            MM                    
+dM'       ` ,pW"Wq.`7Mb,od8 .gP"Ya  dM'      `MM `7M'   `MF'.gP"Ya `7Mb,od8 MM   ,6"Yb.`7M'   `MF'
+MM         6W'   `Wb MM' "',M'   Yb MM        MM   VA   ,V ,M'   Yb  MM' "' MM  8)   MM  VA   ,V  
+MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM   ,pm9MM   VA ,V   
+`Mb.     ,'YA.   ,A9 MM    YM.    , `Mb.    ,dP'     VVV   YM.    ,  MM     MM  8M   MM    VVV    
+  `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
+                                                                                          ,V      
+                                                                                       OOb"         
+	CoreOverlay ver.1.0.0
+	made without blood or sweat, but a lot of tears by doc norberg
+
+	main-controls.css - css code that handles the controls
+
+	CoreOverlay is licensed under the terms of the MIT License; see the COPYING file for license details.
+*/
+
+.controls { 
+    position: absolute; 
+    width: 1920px;
+    height: 1080px; 
+    top: 200px;
+    background-color: black; 
+}
+
+.topside, .bottomside {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: min-content;
+}
+
+.leftside {
+    text-align: right;
+    display: inline-block;
+}
+
+.rightside {
+    text-align: left;
+    display: inline-block;
+}
+
+.centreside, .bottomside {
+    text-align: center;
+    display: inline-block;
+}
+
+.bigplayer, .bigscorenum, .bigrecord, .bigscorebuttons {
+    max-width: min-content;
+}
+
+.inputglobal {
+    background-color: black;
+    color: white;
+    font-family: 'MADE Outer Sans';
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.check {
+    width: 2em;
+    height: 2em;
+}
+
+.buttonglobal {
+    font-size: 0.7em;
+}
+
+.inputcrew {
+    font-size: 0.7em;
+    width: 3em;
+}
+
+.inputplayer {
+    font-size: 1em;
+    width: 10em;
+}
+
+.inputbigscore {
+    font-size: 1.5em;
+    width: 1.5em;
+    text-align: center;
+}
+
+.bottomside {
+    font-size: 0.7em;
+}
+
+.inputrecord {
+    font-size: 1em;
+    width: 2em;
+    text-align: center;
+}
+
+.inputset, .inputgame {
+    font-size: 0.7em;
+    width: 25em;
+}
+
+.updown {
+    display: inline-block;
+}

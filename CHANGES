@@ -1,0 +1,12 @@
+ver.1.0.1
+- all remaining instances of HyperOverlay were changed to CoreOverlay
+
+ver.1.0.0
+- renamed the project to CoreOverlay
+- mirrored the contents and positioning of the overlay into the editor as best as possible
+
+ver.0.2.0
+- cleanup code from old overlay system, make it overall cleaner
+
+ver.0.1.0
+- Initial version

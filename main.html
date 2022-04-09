@@ -1,0 +1,163 @@
+<!--                                                                        ,,                    
+  .g8"""bgd                           .g8""8q.                            `7MM                    
+.dP'     `M                         .dP'    `YM.                            MM                    
+dM'       ` ,pW"Wq.`7Mb,od8 .gP"Ya  dM'      `MM `7M'   `MF'.gP"Ya `7Mb,od8 MM   ,6"Yb.`7M'   `MF'
+MM         6W'   `Wb MM' "',M'   Yb MM        MM   VA   ,V ,M'   Yb  MM' "' MM  8)   MM  VA   ,V  
+MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM   ,pm9MM   VA ,V   
+`Mb.     ,'YA.   ,A9 MM    YM.    , `Mb.    ,dP'     VVV   YM.    ,  MM     MM  8M   MM    VVV    
+  `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
+                                                                                          ,V      
+                                                                                       OOb"         
+	CoreOverlay ver.1.0.0
+	made without blood or sweat, but a lot of tears by doc norberg
+
+	main.html - the foundation document in which all other components control or be controlled by
+
+	CoreOverlay is licensed under the terms of the MIT License; see the COPYING file for license details.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-control" content="max-age=0, must-revalidate, no-store">
+	<meta charset="utf-8">
+	<script src="scripts/min-min.js"></script>
+	<script src="scripts/main.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="scripts/main-display.css">
+	<link rel="stylesheet" type="text/css" href="scripts/main-controls.css">
+	<link rel="stylesheet" type="text/css" href="scripts/main-opener.css">
+	<link rel="stylesheet" type="text/css" href="config.css">
+</head>
+
+<body>
+
+	<div class="full top">
+		<div class="overlay">
+
+			<!--<div class="bigbar"></div>-->
+			<!--<div class="littlebar"></div>-->
+
+			<div class="p1c">
+				<div class="p1la">P1</div>
+				<div class="p1nb"></div>
+				<div class="recbox nrpa p1rc p1-col" id="p1rc">
+					<div class="recnum" id="p1r"></div>
+				</div>
+
+				<div class="namebox nrpa p1nc p1-col" id="p1nc">
+					<div class="pname" id="p1n"></div>
+				</div>
+
+				<div class="scorenum p1s" id="s1"></div>
+			</div>
+
+			<div class="p2c">
+				<div class="p2la">P2</div>
+				<div class="p2nb"></div>
+				<div class="recbox nrpa p2rc p2-col" id="p2rc">
+					<div class="recnum" id="p2r"></div>
+				</div>
+
+				<div class="namebox nrpa p2nc p2-col" id="p2nc">
+					<div class="pname" id="p2n"></div>
+				</div>
+				
+				<div class="scorenum p2s" id="s2"></div>
+			</div>
+
+			<div class="bc">
+				<div class="gamebox nrpa ggc gg-col" id="ggc">
+					<div class="gtext" id="gg"></div>
+				</div>
+
+				<div class="gamebox nrpa mmc gg-col" id="mmc">
+					<div class="gtext s-tt" id="tt"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="controls">
+			<div class="topside">
+				<div class="leftside">
+					<div class="bigplayer">
+						<input class="inputglobal inputcrew" id="icr1">
+						<input class="inputglobal inputplayer" id="ip1">
+						<input class="inputglobal inputbigscore" id="is1">
+						<div class="updown">
+							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('left', 'up');">&#9650;</button><br />
+							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('left', 'down');">&#9660;</button>
+						</div><br />
+						<!--<input class="inputglobal inputrecord" id="ir1w"> - <input class="inputglobal inputrecord" id="ir1l">-->
+					</div>
+				</div>
+				<div class="centreside">
+					<button class="buttonglobal" type="button" onclick="CoreOverlay.send('send');">Send</button><br />
+					<button class="buttonglobal" type="button" onclick="CoreOverlay.switchp();">Switch</button>
+				</div>
+				<div class="rightside">
+					<div class="bigplayer">
+						<input class="inputglobal inputcrew" id="icr2">
+						<input class="inputglobal inputplayer" id="ip2">
+						<input class="inputglobal inputbigscore" id="is2">
+						<div class="updown">
+							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('right', 'up');">&#9650;</button><br />
+							<button class="buttonglobal" type="button" onclick="CoreOverlay.send('right', 'down');">&#9660;</button>
+						</div><br />
+						<!--<input class="inputglobal inputrecord" id="ir2w"> - <input class="inputglobal inputrecord" id="ir2l">-->
+					</div>
+				</div>
+			</div>
+			<div class="bottomside">
+				Enabled <input type="checkbox" class="check" id="overlaystatus" onclick="CoreOverlay.toggleOverlay();">
+				Invert <input type="checkbox" class="check" id="inverted" onclick="CoreOverlay.invertColors();">
+				<input class="inputglobal inputgame" id="igg" list="setlist">
+				<datalist id="setlist">
+					<option value="Winners Bracket"></option>
+					<option value="Losers Bracket"></option>
+					<option value="Winners Quarterfinals"></option>
+					<option value="Winners Semifinals"></option>
+					<option value="Winners Finals"></option>
+					<option value="Losers Top 16"></option>
+					<option value="Losers Top 12"></option>
+					<option value="Losers Top 8"></option>
+					<option value="Losers Quarterfinals"></option>
+					<option value="Losers Semifinals"></option>
+					<option value="Losers Finals"></option>
+					<option value="Grand Finals"></option>
+				</datalist>
+				<input class="inputglobal inputset" id="imm" list="bolist">
+				<datalist id="bolist">
+					<option value="Best of 3"></option>
+					<option value="Best of 5"></option>
+					<option value="Best of 7"></option>
+					<option value="First to 3"></option>
+					<option value="First to 4"></option>
+					<option value="First to 5"></option>
+				</datalist>
+				<p id="hol-status">OK</p>
+			</div>
+		</div>
+
+	<script>
+		$('#overlaystatus').set('checked', false);
+		$('#inverted').set('checked', false);
+		if (debugswitch) {
+			$('#ip1').set("value", "Player 1");
+			$('#ip2').set("value", "Player 2");
+			$('#is1').set("value", 0);
+			$('#is2').set("value", 0);
+			$('#icr1').set("value", "ABC");
+			$('#icr2').set("value", "XYZ");
+			$('#ir1w').set("value", 0);
+			$('#ir2w').set("value", 0);
+			$('#ir1l').set("value", 0);
+			$('#ir2l').set("value", 0);
+			$('#imm').set("value", "Sample Tour - 30 February 2420");
+			$('#igg').set("value", "Sample Round - Best of 69");
+			//CoreOverlay.toggleOverlay();
+		}
+	</script>	
+</body>
+</html>
