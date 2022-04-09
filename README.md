@@ -28,11 +28,11 @@ This is CoreOverlay. CoreOverlay is a stream overlay solution focused primarily 
 # Quick start
 
 1. In your streaming software of choice, create a Browser source or equivalent
-2. Set the following parameters:
-    Source: `main.html`
-    Width: 1920 -- width may be adjusted if configured differently
-    Height: 450 -- height may be adjusted if configured differently
-    Other settings are optional, but the defaults will work fine.
+2. Set the following parameters:    
+    Source: `main.html`    
+    Width: 1920 -- width may be adjusted if configured differently    
+    Height: 450 -- height may be adjusted if configured differently    
+    Other settings are optional, but the defaults will work fine.    
 3. Crop out the controls. In OBS Studio this can be achieved by holding Alt (Option on Mac) and dragging the bottom side up towards the top. This hides the controls from the stream but will remain accessible to you.
 4. Right click the source and choose "Interact" or equivalent
 
