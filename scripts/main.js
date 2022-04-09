@@ -8,7 +8,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
   `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
                                                                                           ,V      
                                                                                        OOb"         
-	CoreOverlay ver.1.0.0
+	CoreOverlay ver.1.0.1
 	made without blood or sweat, but a lot of tears by doc norberg
 
 	main.js - the core code that powers all other components
@@ -168,17 +168,13 @@ var CoreOverlay = {
 		} else {
 			$('.p1c').set('$opacity', 1);
 			$('.p2c').set('$opacity', 1);
-			runopener();
-			$.wait(1500).then(function() {
+			$.wait(100).then(function() {
 				$('.bc').set('$width', '1000px');
 				$.wait(300).then(function() {
 					$('.p1nb').set('$width', '740px');
 					$('.p2nb').set('$width', '740px');
 					CoreOverlay.send('send');
 				});
-				if (recordon) {
-					$('.recbox').set('$opacity', 1);
-				}
 				$.wait(1500).then(function() {
 					$('.p1la').set('$opacity', 0.5);
 					$('.p2la').set('$opacity', 0.5);
@@ -188,30 +184,14 @@ var CoreOverlay = {
 			statusdisp(0); return 0;
 		}
 	},
-	togglerecord: function () {
-		// first, check if we're still updating and reject togglerecord until then
-		if (updating) {
-			statusdisp(11); return 11;
-		}
-		// next, check if we're not enabled and silently return
-		if (!overlaystatus) {
-			statusdisp(0); return 0;
-		}
-		recordon = $('#recordon').get('checked');
-		if (recordon) {
-			$('.recbox').set('$opacity', 1);
-		} else {
-			$('.recbox').set('$opacity', 0);
-		}
-		statusdisp(0); return 0;
-	},
 	switchp: function() {
-		// first, check if we're still updating and reject Switch until then
-		if (updating) {
-			statusdisp(11); return 11;
-		}
 		// switchp (can't call it switch): switches player, score, record and then re-sends.
 		// takes immediate effect, except if the overlay isn't on
+
+		// first, check if we're still updating and reject switchp until then
+		if (updating) {
+			statusdisp(11); return 11;
+		}
 		var pt, st, crt, rtw, rtl;
 		if (overlaystatus) {
 			pt = p1;
@@ -260,8 +240,9 @@ var CoreOverlay = {
 		statusdisp(0); return 0;
 	},
 	invertColors: function() {
-		// invertColors: flip the blacks and whites for light stages
-		// first, check if we're not enabled and silently return
+		// invertColors: flip the blacks and whites. useful for light stages where overlay visibility is poor.
+
+		// enabling this if will silently return without actually inverting anything
 		//if (!overlaystatus) {
 		//	statusdisp(0); return 0;
 		//}
@@ -281,8 +262,7 @@ var CoreOverlay = {
 };
 
 function runUpdate() {
-
-	recordon = $('#recordon').get('checked');
+	// runUpdate: function that actually updates the items on the overlay display.
 
 	if ($('#p1n').get("innerHTML") != '<small>' + cr1 + '</small>' + p1) {
 		updating = true;
@@ -321,24 +301,6 @@ function runUpdate() {
 				$('.p2s').animate({$$fade: 1}, inSpeed);
 				updating = false;
 			});
-		});
-	}
-
-	if ($('#p1r').get("innerHTML") != (r1w + '-' + r1l)) {
-		updating = true;
-		$('#p1r').animate({$$fade: 0}, outSpeed).then(function() {
-			$('#p1r').set("innerHTML", r1w + '-' + r1l);
-			if (recordon) $('#p1r').animate({$$fade: 1}, inSpeed);
-			updating = false;
-		});
-	}
-
-	if ($('#p2r').get("innerHTML") != (r2w + '-' + r2l)) {
-		updating = true;
-		$('#p2r').animate({$$fade: 0}, outSpeed).then(function() {
-			$('#p2r').set("innerHTML", r2w + '-' + r2l);
-			if (recordon) $('#p2r').animate({$$fade: 1}, inSpeed);
-			updating = false;
 		});
 	}
 

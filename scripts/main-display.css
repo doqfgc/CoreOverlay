@@ -8,7 +8,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
   `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
                                                                                           ,V      
                                                                                        OOb"         
-	CoreOverlay ver.1.0.0
+	CoreOverlay ver.1.0.1
 	made without blood or sweat, but a lot of tears by doc norberg
 
 	main-display.css - css code that handles the displayed overlay (what the stream sees)
@@ -16,33 +16,9 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
 	CoreOverlay is licensed under the terms of the MIT License; see the COPYING file for license details.
 */
 
-/*
-
-targets:
-
-bigbar
-    |- p1c, abs, left: 145, width: 750px
-    |   |- p1n, rel, left: 5px, top: 30px, width: 575px, height: 55px
-    |   |- p1r, rel, right: 100px, top: 40px, width: 70px, height: 40px
-    |   \- s1, rel, right: 0px; 
-    |- p2c, abs, left: 895, width: 750px
-    \   |- p2n, rel, left: 5px, top: 30px, width: 575px, height: 55px
-        |- p2r, rel, right: 100px, top: 40px, width: 70px, height: 40px
-        \- s2
-
-        \- mm, rel, right: 50px, top: 110px, width: 300px, height: 35px
-        \- gg, rel, left: 50px, top: 110px, width: 300px, height: 35px
-
-also, player names 48, crew 32, records 36, scores 96, info 16
-    
-I wonder if I can position both on the same side, and then flip p1 or p2 after the fact...
-probably not if I want to keep animation.
-
-*/
-
 body {
 	position: relative; width: 1920px; margin: 0 auto; overflow: hidden; white-space: nowrap; color: #FFF;
-	font-family: "MADE Outer Sans"; font-style: italic; font-weight: 900;
+	font-family: "Verdana", "Noto Sans", "Arial"; font-style: italic; font-weight: 900;
 	font-size: 48px; line-height: 42px; text-align: left;
 	text-transform: uppercase;
 }
@@ -50,7 +26,7 @@ body {
 .overflow { overflow: hidden; text-overflow: ellipsis; }
 
 .full { position: absolute; width: 1920px; height: 175px;
-    /* background-color: magenta;*/
+    /* background-color: magenta;*/ /* enable this for a debug background */
 }
 .btm { bottom: 0px; opacity: 0; }
 .top { top: 0px; opacity: 1; left: 0px; }
