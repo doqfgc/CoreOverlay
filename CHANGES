@@ -1,3 +1,7 @@
+Lovelace (devel)
+- preliminary support for CoreOverlay plugins
+- rolled custom slim minified library. reduced library size from about 23k to about 7k
+
 ver.1.1.0
 - changed the base design to be more uniform to what streamers would want
 - optimised some function code in main.js

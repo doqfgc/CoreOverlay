@@ -8,7 +8,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
   `"bmmmd'  `Ybmd9'.JMML.   `Mbmmd'   `"bmmd"'        W     `Mbmmd'.JMML. .JMML.`Moo9^Yo.  ,V     
                                                                                           ,V      
                                                                                        OOb"         
-	CoreOverlay ver.1.1.0
+	CoreOverlay Lovelace
 	made without blood or sweat, but a lot of tears by doc norberg
 
 	main.js - the core code that powers all other components
@@ -19,6 +19,7 @@ MM.        8M     M8 MM    8M"""""" MM.      ,MP    VA ,V  8M""""""  MM     MM  
 
 // debug switch; disables transitions and sets active state automatically
 // useful for final overlay placements
+// set this to false for production
 var debugswitch = true;
 
 
@@ -37,9 +38,23 @@ $('#overlaystatus').set('checked', false);
 var inverted = false;
 $('#inverted').set('checked', false);
 
-// these are useful if you use score bars instead of score numbers
+var plugins = [];
+
+// here is part of an example on how to use score bars (I, II, III) instead of score digits (1, 2, 3)
 // var sc1 = ['.score11','.score12','.score13'];
 // var sc2 = ['.score21','.score22','.score23'];
+
+function pluginloader() {
+	var pluginsjson = $.request('get', "plugins/plugins.json").then(function(json) {
+		plugins = $.parseJSON(json);
+		pl = plugins.plugins.length;
+		for (var i = 0; i < ll; i++) { 
+			var content = $.request('get', "plugins/" + plugins.plugins[i] + ".json").then(function(content) {
+				$('body').add(EE('script', {'@id': plugins.plugins[i], '@class': 'coreoverlay-plugin'}, content));
+			});
+		}
+	});
+}
 
 function statusdisp(err) {
 	// statusdisp: 
